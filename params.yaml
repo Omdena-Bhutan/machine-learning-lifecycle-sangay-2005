@@ -1,0 +1,11 @@
+train:
+  model_name: "distilbert-base-uncased"
+  batch_size: 16
+  epochs: 2
+  learning_rate: 2e-5
+  max_length: 128
+  validation_split: 0.2
+
+data:
+  dataset_path: "data/raw/reviews.csv"
+  test_size: 0.2

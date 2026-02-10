@@ -1,0 +1,3 @@
+# Placeholder config; params.yaml holds tunables used by DVC
+experiment_name: "sentiment-analysis"
+mlflow_tracking_uri: "file:./mlruns"

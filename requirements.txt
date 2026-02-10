@@ -1,0 +1,27 @@
+# Core
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.4.2
+
+# NLP / HF
+transformers==4.44.0
+accelerate==0.33.0
+# IMPORTANT: Install torch separately to match your platform.
+# CPU-only example:
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision torchaudio
+# CUDA example (ensure driver/toolkit match):
+#   pip install --index-url https://download.pytorch.org/whl/cu121 torch torchvision torchaudio
+
+# Experiment tracking
+mlflow==2.14.1
+
+# Data versioning
+dvc[s3]==3.51.1
+
+# API
+flask==3.0.3
+uvicorn==0.30.3
+
+# Utilities
+PyYAML==6.0.2
+requests==2.32.3

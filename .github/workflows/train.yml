@@ -1,0 +1,32 @@
+name: Train
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          dvc --version
+      - name: Configure DVC remote
+        if: env.DVC_REMOTE != ''
+        env:
+          DVC_REMOTE: ${{ secrets.DVC_REMOTE }}
+        run: |
+          dvc remote add -f -d storage $DVC_REMOTE
+      - name: Pull data
+        run: dvc pull || true
+      - name: Train
+        run: dvc repro
+      - name: Push artifacts
+        run: dvc push || true
