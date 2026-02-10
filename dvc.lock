@@ -50,29 +50,9 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: b602fd14feddaeb4d23670667fe08e38
+      md5: 9afbbec657f7d07f15f370bf57bd9cfe
       size: 28
     - path: models/trained/model.pt
       hash: md5
-      md5: f713c895ac8dacd667e890b57ec90c08
+      md5: 8d96ba6be6ecf0968ec4d7036f812c41
       size: 267853258
-  evaluate:
-    cmd: python src/evaluate.py
-    deps:
-    - path: data/processed/test.pkl
-      hash: md5
-      md5: e3a87eefcaf5d40216b0f390362df86e
-      size: 12660293
-    - path: models/trained/model.pt
-      hash: md5
-      md5: f713c895ac8dacd667e890b57ec90c08
-      size: 267853258
-    - path: src/evaluate.py
-      hash: md5
-      md5: 63b472852225007e07585304149e5e0b
-      size: 2086
-    outs:
-    - path: eval_metrics.json
-      hash: md5
-      md5: 1077f78a5a157af3607c1604788455de
-      size: 219
