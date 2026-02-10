@@ -2,40 +2,38 @@ stages:
   prepare:
     cmd: python src/data_loader.py
     deps:
-      - data/raw/reviews.csv
-      - src/data_loader.py
-      - src/config.yaml
+    - data/raw/reviews.csv
+    - src/config.yaml
+    - src/data_loader.py
     params:
-      - train.model_name
-      - train.max_length
-      - data.dataset_path
-      - data.test_size
+    - data.dataset_path
+    - data.test_size
+    - train.max_length
+    - train.model_name
     outs:
-      - data/processed/train.pkl
-      - data/processed/test.pkl
-
+    - data/processed/test.pkl
+    - data/processed/train.pkl
   train:
     cmd: python src/model.py
     deps:
-      - data/processed/train.pkl
-      - src/model.py
+    - data/processed/train.pkl
+    - src/model.py
     params:
-      - train.model_name
-      - train.batch_size
-      - train.epochs
-      - train.learning_rate
+    - train.batch_size
+    - train.epochs
+    - train.learning_rate
+    - train.model_name
     outs:
-      - models/trained/model.pt
+    - models/trained/model.pt
     metrics:
-      - metrics.json:
-          cache: false
-
+    - metrics.json:
+        cache: false
   evaluate:
     cmd: python src/evaluate.py
     deps:
-      - models/trained/model.pt
-      - data/processed/test.pkl
-      - src/evaluate.py
+    - data/processed/test.pkl
+    - models/trained/model.pt
+    - src/evaluate.py
     metrics:
-      - eval_metrics.json:
-          cache: false
+    - eval_metrics.json:
+        cache: false
