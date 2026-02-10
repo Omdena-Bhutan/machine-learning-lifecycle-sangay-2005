@@ -1,0 +1,41 @@
+stages:
+  prepare:
+    cmd: python src/data_loader.py
+    deps:
+      - data/raw/reviews.csv
+      - src/data_loader.py
+      - src/config.yaml
+    params:
+      - train.model_name
+      - train.max_length
+      - data.dataset_path
+      - data.test_size
+    outs:
+      - data/processed/train.pkl
+      - data/processed/test.pkl
+
+  train:
+    cmd: python src/model.py
+    deps:
+      - data/processed/train.pkl
+      - src/model.py
+    params:
+      - train.model_name
+      - train.batch_size
+      - train.epochs
+      - train.learning_rate
+    outs:
+      - models/trained/model.pt
+    metrics:
+      - metrics.json:
+          cache: false
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - models/trained/model.pt
+      - data/processed/test.pkl
+      - src/evaluate.py
+    metrics:
+      - eval_metrics.json:
+          cache: false

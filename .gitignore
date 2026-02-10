@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+.env
+.env*
+.DS_Store
+
+# DVC / data
+/data/raw/
+/data/processed/
+/models/trained/
+*.dvc
+.dvc/
+
+# MLflow
+mlruns/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Logs
+logs/
+results/
