@@ -14,8 +14,12 @@ venv/
 /data/raw/
 /data/processed/
 /models/trained/
-*.dvc
-.dvc/
+# Track DVC metadata and pointer files in Git
+!.dvc
+!.dvcignore
+# Ignore only DVC cache/tmp
+.dvc/cache/
+.dvc/tmp/
 
 # MLflow
 mlruns/
